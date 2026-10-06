@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lumen Car — Премиальная полировка фар и стёкол · Усть-Илимск</title>
+<meta name="theme-color" content="#0a0e14">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#05080d;color:#e6edf3;min-height:100vh;padding-bottom:140px;position:relative;overflow-x:hidden;line-height:1.5}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(31,111,235,.25) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 0% 30%,rgba(240,180,41,.08) 0%,transparent 50%),radial-gradient(ellipse 60% 40% at 100% 70%,rgba(88,166,255,.12) 0%,transparent 50%),linear-gradient(180deg,#05080d 0%,#0a0e14 50%,#05080d 100%);z-index:-3}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(88,166,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(88,166,255,.03) 1px,transparent 1px);background-size:60px 60px;z-index:-2;-webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 30%,#000 40%,transparent 80%);mask-image:radial-gradient(ellipse 70% 50% at 50% 30%,#000 40%,transparent 80%)}
+.light-rays{position:fixed;top:0;left:0;right:0;height:60vh;z-index:-1;pointer-events:none;overflow:hidden}
+.light-rays::before,.light-rays::after{content:'';position:absolute;top:-20%;width:2px;height:120%;background:linear-gradient(180deg,transparent,rgba(88,166,255,.4),transparent);filter:blur(1px);transform:rotate(15deg)}
+.light-rays::before{left:20%;animation:ray1 8s ease-in-out infinite}
+.light-rays::after{right:25%;animation:ray2 10s ease-in-out infinite}
+@keyframes ray1{0%,100%{opacity:.3;transform:rotate(15deg) translateX(0)}50%{opacity:.7;transform:rotate(15deg) translateX(30px)}}
+@keyframes ray2{0%,100%{opacity:.2;transform:rotate(-12deg) translateX(0)}50%{opacity:.5;transform:rotate(-12deg) translateX(-30px)}}
+.header{position:relative;padding:48px 20px 40px;text-align:center;overflow:hidden;background:linear-gradient(180deg,rgba(10,14,20,.9) 0%,rgba(5,8,13,.5) 100%);border-bottom:1px solid rgba(88,166,255,.15)}
+.header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(88,166,255,.15) 0%,transparent 50%);animation:shine 8s linear infinite;pointer-events:none}
+@keyframes shine{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.car-silhouette{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:280px;height:60px;opacity:.15;pointer-events:none}
+.logo{display:inline-flex;align-items:center;gap:14px;position:relative;z-index:1;margin-bottom:8px}
+.logo-icon{width:56px;height:56px;background:linear-gradient(135deg,#f0b429 0%,#d99a1f 100%);color:#0a0e14;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;font-family:'Playfair Display',serif;box-shadow:0 0 30px rgba(240,180,41,.5),0 0 60px rgba(240,180,41,.3)}
+.header h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,#f0b429 0%,#ffe680 50%,#f0b429 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .tagline{font-size:12px;color:#8b949e;margin-top:12px;letter-spacing:3px;text-transform:uppercase;font-weight:600}
+.header .city{font-size:11px;color:#6e7681;margin-top:8px;letter-spacing:2px;text-transform:uppercase}
+.divider{display:flex;align-items:center;gap:12px;margin:0 auto;max-width:200px;padding-top:16px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(240,180,41,.5),transparent)}
+.divider span{color:#f0b429;font-size:14px}
+.container{max-width:640px;margin:0 auto;padding:16px}
+.section-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#f0b429;margin:36px 0 16px;display:flex;align-items:center;gap:10px;letter-spacing:1px}
+.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(240,180,41,.4),transparent)}
+.card{background:linear-gradient(145deg,rgba(20,26,36,.9) 0%,rgba(13,17,23,.95) 100%);border:1px solid rgba(88,166,255,.12);border-radius:16px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;cursor:pointer;user-select:none;transition:all .3s;position:relative;overflow:hidden;backdrop-filter:blur(10px)}
+.card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(240,180,41,.06),transparent);transition:left .6s}
+.card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,transparent,#f0b429,transparent);opacity:0;transition:opacity .3s}
+.card:active{transform:scale(.985)}
+.card:active::before{left:100%}
+.card.selected{border-color:rgba(240,180,41,.6);background:linear-gradient(145deg,rgba(30,24,10,.9) 0%,rgba(20,16,8,.95) 100%);box-shadow:0 0 0 1px rgba(240,180,41,.3) inset,0 12px 32px rgba(240,180,41,.15)}
+.card.selected::after{opacity:1}
+.card.selected .checkbox{background:linear-gradient(135deg,#f0b429 0%,#d99a1f 100%);border-color:#f0b429}
+.card-info{flex:1;min-width:0}
+.card-name{font-size:15px;font-weight:700;color:#f0f6fc;line-height:1.35}
+.card-desc{font-size:12px;color:#8b949e;line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(88,166,255,.15)}
+.card-desc b{color:#f0b429}
+.card-price{font-size:15px;color:#f0b429;font-weight:800;margin-top:10px;display:inline-block;background:linear-gradient(135deg,rgba(240,180,41,.12),rgba(240,180,41,.06));padding:4px 12px;border-radius:8px;border:1px solid rgba(240,180,41,.2)}
+.checkbox{width:26px;height:26px;border:2px solid rgba(88,166,255,.3);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .3s;margin-top:2px}
+.checkbox::after{content:'✓';font-size:16px;color:#0a0e14;opacity:0;font-weight:900;transform:scale(0);transition:all .3s}
+.card.selected .checkbox::after{opacity:1;transform:scale(1)}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(13,17,23,.98),rgba(5,8,13,.99));border-top:1px solid rgba(240,180,41,.4);padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;z-index:50;box-shadow:0 -8px 40px rgba(0,0,0,.9);backdrop-filter:blur(20px)}
+.total-box{flex:1}
+.total-label{font-size:10px;color:#8b949e;text-transform:uppercase;letter-spacing:2px;font-weight:700}
+.total-sum{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#f0b429;text-shadow:0 0 30px rgba(240,180,41,.5);transition:all .3s}
+.total-sum.bump{transform:scale(1.12)}
+.btn{background:linear-gradient(135deg,#f0b429 0%,#d99a1f 100%);color:#0a0e14;border:none;padding:15px 24px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s;box-shadow:0 4px 20px rgba(240,180,41,.4)}
+.btn:active{transform:scale(.96)}
+.btn:disabled{background:linear-gradient(135deg,#2a3242,#1a2130);color:#6e7681;cursor:not-allowed;opacity:.5;box-shadow:none}
+.btn:not(:disabled):hover{box-shadow:0 6px 30px rgba(240,180,41,.7);transform:translateY(-2px)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);display:none;align-items:flex-end;z-index:100}
+.modal.open{display:flex}
+.modal-content{background:linear-gradient(180deg,rgba(20,26,36,.98),rgba(13,17,23,.99));border-radius:28px 28px 0 0;padding:32px 22px;padding-bottom:calc(32px + env(safe-area-inset-bottom));width:100%;max-width:640px;margin:0 auto;max-height:90vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.2,.8,.2,1);border-top:1px solid rgba(240,180,41,.3)}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal h2{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:22px;color:#f0b429}
+.order-list{margin-bottom:16px;max-height:40vh;overflow-y:auto}
+.order-item{display:flex;justify-content:space-between;font-size:14px;padding:12px 0;border-bottom:1px solid rgba(88,166,255,.1);gap:12px}
+.order-item span:first-child{flex:1;color:#c9d1d9}
+.order-item span:last-child{font-weight:800;color:#f0b429;white-space:nowrap}
+.order-total{display:flex;justify-content:space-between;font-size:20px;font-weight:900;padding:18px 0;border-top:2px solid rgba(240,180,41,.3);margin-top:8px;color:#f0b429;font-family:'Playfair Display',serif}
+.input-group{margin-bottom:14px}
+.input-group label{display:block;font-size:11px;color:#8b949e;margin-bottom:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.input-group input,.input-group textarea{width:100%;background:rgba(5,8,13,.8);border:1px solid rgba(88,166,255,.15);border-radius:12px;padding:15px;color:#e6edf3;font-size:15px;font-family:inherit;outline:none;transition:all .25s}
+.input-group input:focus,.input-group textarea:focus{border-color:#f0b429;box-shadow:0 0 0 3px rgba(240,180,41,.15)}
+.input-group textarea{resize:vertical;min-height:70px}
+.modal-actions{display:flex;gap:12px;margin-top:22px}
+.modal-actions .btn{flex:1}
+.btn-secondary{background:linear-gradient(135deg,rgba(42,50,66,.9),rgba(26,33,48,.9));color:#c9d1d9;box-shadow:none;border:1px solid rgba(88,166,255,.15)}
+.reviews-section{margin-top:48px}
+.reviews-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#f0b429;text-align:center;margin-bottom:6px}
+.reviews-subtitle{font-size:11px;color:#6e7681;text-align:center;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.reviews-add-btn{width:100%;padding:16px;background:rgba(240,180,41,.1);border:1px dashed rgba(240,180,41,.5);border-radius:14px;color:#f0b429;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:16px;font-family:inherit;transition:all .25s}
+.reviews-add-btn:hover{background:rgba(240,180,41,.2);border-style:solid}
+.reviews-list{display:flex;flex-direction:column;gap:14px}
+.review-card{background:linear-gradient(145deg,rgba(20,26,36,.9),rgba(13,17,23,.95));border:1px solid rgba(88,166,255,.12);border-radius:16px;padding:20px;position:relative}
+.review-stars{color:#f0b429;font-size:14px;letter-spacing:2px;margin-bottom:10px}
+.review-text{font-size:13px;color:#c9d1d9;line-height:1.7;margin-bottom:14px;font-style:italic}
+.review-author{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid rgba(88,166,255,.1)}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f0b429,#d99a1f);color:#0a0e14;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px}
+.review-name{font-size:13px;font-weight:700;color:#f0f6fc}
+.review-car{font-size:11px;color:#6e7681;margin-top:2px}
+.review-date{font-size:10px;color:#6e7681;margin-left:auto}
+.review-delete{position:absolute;top:12px;right:12px;background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3);color:#f85149;width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;opacity:.6}
+.reviews-empty{text-align:center;padding:30px;color:#6e7681;font-size:13px;font-style:italic}
+.stars-input{display:flex;gap:8px;margin-bottom:14px;justify-content:center}
+.star-btn{background:none;border:none;font-size:36px;color:#2a3242;cursor:pointer;padding:0 4px;line-height:1}
+.star-btn.active{color:#f0b429;text-shadow:0 0 20px rgba(240,180,41,.6)}
+.info-footer{text-align:center;padding:48px 16px 16px;font-size:13px;color:#8b949e;line-height:2}
+.info-footer a{color:#f0b429;text-decoration:none;font-weight:600}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;background:linear-gradient(135deg,#f0b429,#ffe680,#f0b429);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;letter-spacing:3px}
+.footer-slogan{font-size:11px;color:#6e7681;margin-bottom:20px;font-style:italic;letter-spacing:2px;text-transform:uppercase}
+.toast{position:fixed;top:100px;left:50%;transform:translateX(-50%) translateY(-30px);background:linear-gradient(135deg,#f0b429,#d99a1f);color:#0a0e14;padding:15px 26px;border-radius:14px;font-size:14px;font-weight:800;opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90%;text-align:center;box-shadow:0 12px 40px rgba(240,180,41,.5)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:linear-gradient(135deg,#238636,#2ea043);color:#fff}
+.toast.error{background:linear-gradient(135deg,#da3633,#f85149);color:#fff}
+</style>
+</head>
+<body>
+
+<div class="light-rays"></div>
+
+<div class="header">
+  <div class="logo"><div class="logo-icon">L</div><h1>LUMEN CAR</h1></div>
+  <div class="divider"><span>◆</span></div>
+  <div class="tagline">Premium Detailing Studio</div>
+  <div class="city">Усть-Илимск</div>
+  <svg class="car-silhouette" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 45 L40 45 L45 35 L75 25 L130 20 L180 25 L215 35 L220 45 L250 45" stroke="#f0b429" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path d="M75 25 L85 18 L140 15 L175 20 L180 25" stroke="#f0b429" stroke-width="1" fill="none" opacity="0.5"/>
+    <circle cx="60" cy="45" r="8" stroke="#f0b429" stroke-width="1.5" fill="none"/>
+    <circle cx="220" cy="45" r="8" stroke="#f0b429" stroke-width="1.5" fill="none"/>
+  </svg>
+</div>
+
+<div class="container">
+
+  <div class="section-title">🔦 Полировка фар</div>
+  <div class="card" data-id="f1" data-name="Полировка одной фары" data-price="1200"><div class="card-info"><div class="card-name">Полировка одной фары</div><div class="card-desc">Без снятия. Снятие окисленного слоя.</div><div class="card-price">1 200 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="f2" data-name="Полировка двух фар" data-price="2200"><div class="card-info"><div class="card-name">Полировка двух фар</div><div class="card-desc">Шлифовка, полировка, защита.</div><div class="card-price">2 200 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="f3" data-name="Полировка двух фар со снятием" data-price="3800"><div class="card-info"><div class="card-name">Полировка двух фар со снятием</div><div class="card-desc">Демонтаж, полировка со всех сторон.</div><div class="card-price">3 800 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="f4" data-name="Восстановление фар" data-price="4500"><div class="card-info"><div class="card-name">Восстановление фар (полировка + лак)</div><div class="card-desc">Для сильно мутных фар.</div><div class="card-price">4 500 ₽</div></div><div class="checkbox"></div></div>
+
+  <div class="section-title">💡 Световые приборы</div>
+  <div class="card" data-id="l1" data-name="Полировка поворотников" data-price="800"><div class="card-info"><div class="card-name">Полировка поворотников (пара)</div><div class="card-desc">Восстановление прозрачности.</div><div class="card-price">800 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="l2" data-name="Полировка задних фонарей" data-price="1000"><div class="card-info"><div class="card-name">Полировка задних фонарей (пара)</div><div class="card-desc">Возвращаем яркость.</div><div class="card-price">1 000 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="l3" data-name="Полировка стопов и ПТФ" data-price="800"><div class="card-info"><div class="card-name">Полировка стоп-сигналов и ПТФ</div><div class="card-desc">Стопы, противотуманки, габариты.</div><div class="card-price">800 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="l4" data-name="Комплекс «Вся светотехника»" data-price="4200"><div class="card-info"><div class="card-name">Комплекс «Вся светотехника»</div><div class="card-desc"><b>Входит:</b> фары + поворотники + задние фонари + стопы и ПТФ. <b>Экономия 1000 ₽.</b></div><div class="card-price">4 200 ₽</div></div><div class="checkbox"></div></div>
+
+  <div class="section-title">🪟 Полировка стёкол</div>
+  <div class="card" data-id="s1" data-name="Полировка лобового стекла" data-price="3500"><div class="card-info"><div class="card-name">Полировка лобового стекла</div><div class="card-desc">Удаление царапин от щёток.</div><div class="card-price">3 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="s2" data-name="Полировка бокового стекла" data-price="1000"><div class="card-info"><div class="card-name">Полировка бокового стекла (1 шт.)</div><div class="card-desc">Царапины и потёртости.</div><div class="card-price">1 000 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="s3" data-name="Полировка заднего стекла" data-price="1500"><div class="card-info"><div class="card-name">Полировка заднего стекла</div><div class="card-desc">Восстановление прозрачности.</div><div class="card-price">1 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="s4" data-name="Полировка всех стёкол" data-price="5500"><div class="card-info"><div class="card-name">Полировка всех стёкол</div><div class="card-desc">Лобовое + боковые + заднее. <b>Выгоднее чем по отдельности.</b></div><div class="card-price">5 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="s5" data-name="Антидождь 1 стекло" data-price="800"><div class="card-info"><div class="card-name">Антидождь (1 стекло)</div><div class="card-desc">Гидрофобное покрытие.</div><div class="card-price">800 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="s6" data-name="Антидождь все стёкла" data-price="2500"><div class="card-info"><div class="card-name">Антидождь (все стёкла)</div><div class="card-desc">Полный комплекс.</div><div class="card-price">2 500 ₽</div></div><div class="checkbox"></div></div>
+
+  <div class="section-title">💧 Удаление водного камня</div>
+  <div class="card" data-id="v1" data-name="Водный камень с лобового" data-price="1800"><div class="card-info"><div class="card-name">С лобового стекла</div><div class="card-desc">Удаление минеральных отложений.</div><div class="card-price">1 800 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="v2" data-name="Водный камень с боковых" data-price="1200"><div class="card-info"><div class="card-name">С боковых стёкол</div><div class="card-desc">Очистка от налёта.</div><div class="card-price">1 200 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="v3" data-name="Водный камень со всех стёкол" data-price="2800"><div class="card-info"><div class="card-name">Со всех стёкол (комплекс)</div><div class="card-desc">Полное устранение налёта.</div><div class="card-price">2 800 ₽</div></div><div class="checkbox"></div></div>
+
+  <div class="section-title">🛠 Пластик и хром</div>
+  <div class="card" data-id="p1" data-name="Восстановление внешнего пластика" data-price="3500"><div class="card-info"><div class="card-name">Восстановление внешнего пластика</div><div class="card-desc">Реставрация чёрного пластика снаружи.</div><div class="card-price">3 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="p2" data-name="Восстановление пластика в салоне" data-price="2500"><div class="card-info"><div class="card-name">Восстановление пластика в салоне</div><div class="card-desc">Панели, консоль, дверные карты.</div><div class="card-price">2 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="p3" data-name="Восстановление хрома" data-price="4500"><div class="card-info"><div class="card-name">Восстановление хрома</div><div class="card-desc">Полировка хромированных элементов.</div><div class="card-price">4 500 ₽</div></div><div class="checkbox"></div></div>
+
+  <div class="section-title">🎁 Премиум-комплексы</div>
+  <div class="card" data-id="k1" data-name="Комплекс «Светлый путь»" data-price="6500"><div class="card-info"><div class="card-name">Комплекс «Светлый путь»</div><div class="card-desc"><b>Входит:</b> 2 фары + лобовое + антидождь. <b>Выгода 2 000 ₽.</b></div><div class="card-price">6 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="k2" data-name="Комплекс «Ночной охотник»" data-price="8500"><div class="card-info"><div class="card-name">Комплекс «Ночной охотник»</div><div class="card-desc"><b>Входит:</b> фары со снятием + внешний пластик + задние фонари. <b>Выгода 3 000 ₽.</b></div><div class="card-price">8 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="k3" data-name="Комплекс «Кристальный салон»" data-price="5500"><div class="card-info"><div class="card-name">Комплекс «Кристальный салон»</div><div class="card-desc"><b>Входит:</b> пластик в салоне + хром + антидождь. <b>Выгода 1 500 ₽.</b></div><div class="card-price">5 500 ₽</div></div><div class="checkbox"></div></div>
+  <div class="card" data-id="k4" data-name="Комплекс «Максимум»" data-price="16000"><div class="card-info"><div class="card-name">Комплекс «Максимум»</div><div class="card-desc"><b>Входит:</b> фары со снятием + вся светотехника + все стёкла + антидождь + водный камень + пластик. <b>Выгода 5 000 ₽.</b></div><div class="card-price">16 000 ₽</div></div><div class="checkbox"></div></div>
+
+  <div class="reviews-section">
+    <div class="reviews-title">Мои отзывы</div>
+    <div class="reviews-subtitle">Поделитесь впечатлением</div>
+    <button class="reviews-add-btn" id="addReviewBtn" type="button">✍️ Оставить отзыв</button>
+    <div class="reviews-list" id="reviewsList"></div>
+  </div>
+
+  <div class="info-footer">
+    <div class="footer-brand">LUMEN CAR</div>
+    <div class="footer-slogan">Свет в каждой детали</div>
+    <p>📍 г. Усть-Илимск</p>
+    <p>📞 <a href="tel:+79996433398">+7 999 643-33-98</a></p>
+    <p>💬 <a href="https://t.me/General_chik">Telegram</a></p>
+    <p style="margin-top:20px;opacity:.5;font-size:11px">Цены не являются публичной офертой.<br>Точная стоимость — после осмотра авто.</p>
+  </div>
+
+</div>
+
+<div class="bottom-bar">
+  <div class="total-box">
+    <div class="total-label">Итого</div>
+    <div class="total-sum" id="totalSum">0 ₽</div>
+  </div>
+  <button class="btn" id="orderBtn" disabled type="button">Заявка</button>
+</div>
+
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <h2>◆ Оформление заявки</h2>
+    <div class="order-list" id="orderList"></div>
+    <div class="order-total"><span>Итого:</span><span id="modalTotal">0 ₽</span></div>
+    <div class="input-group"><label>Ваше имя</label><input type="text" id="clientName" placeholder="Как к вам обращаться" maxlength="50"></div>
+    <div class="input-group"><label>Телефон</label><input type="tel" id="clientPhone" placeholder="+7 (___) ___-__-__" maxlength="20"></div>
+    <div class="input-group"><label>Комментарий</label><textarea id="clientComment" placeholder="Марка авто, пожелания" maxlength="500"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="cancelOrderBtn" type="button">Отмена</button>
+      <button class="btn" id="sendOrderBtn" type="button">Отправить</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="reviewModal">
+  <div class="modal-content">
+    <h2>◆ Оставить отзыв</h2>
+    <div class="input-group">
+      <label>Оценка</label>
+      <div class="stars-input" id="starsInput">
+        <button class="star-btn" data-star="1" type="button">★</button>
+        <button class="star-btn" data-star="2" type="button">★</button>
+        <button class="star-btn" data-star="3" type="button">★</button>
+        <button class="star-btn" data-star="4" type="button">★</button>
+        <button class="star-btn" data-star="5" type="button">★</button>
+      </div>
+    </div>
+    <div class="input-group"><label>Ваше имя</label><input type="text" id="reviewName" placeholder="Иван" maxlength="50"></div>
+    <div class="input-group"><label>Автомобиль</label><input type="text" id="reviewCar" placeholder="Toyota Camry" maxlength="50"></div>
+    <div class="input-group"><label>Отзыв</label><textarea id="reviewText" placeholder="Расскажите о вашем опыте" maxlength="1000"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="cancelReviewBtn" type="button">Отмена</button>
+      <button class="btn" id="submitReviewBtn" type="button">Отправить</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var BOT_TOKEN = "8971246460:AAF84HOXCT15tuGCDHeb-NFEVNp86_02QV4";
+var CHAT_ID = "666221101";
+
+document.addEventListener('DOMContentLoaded', function(){
+  console.log('Lumen Car loaded');
+
+  var cards = document.querySelectorAll('.card');
+  var selected = [];
+
+  function fmt(n){ return n.toLocaleString('ru-RU') + ' ₽'; }
+
+  function updateTotal(){
+    var total = 0;
+    for(var i = 0; i < selected.length; i++) total += selected[i].price;
+    var el = document.getElementById('totalSum');
+    el.textContent = fmt(total);
+    el.classList.add('bump');
+    setTimeout(function(){ el.classList.remove('bump'); }, 300);
+    document.getElementById('orderBtn').disabled = total === 0;
+  }
+
+  function toggleCard(card){
+    var id = card.getAttribute('data-id');
+    var idx = -1;
+    for(var i = 0; i < selected.length; i++){
+      if(selected[i].id === id){ idx = i; break; }
+    }
+    if(idx >= 0){
+      selected.splice(idx, 1);
+      card.classList.remove('selected');
+    } else {
+      selected.push({
+        id: id,
+        name: card.getAttribute('data-name'),
+        price: parseInt(card.getAttribute('data-price'), 10)
+      });
+      card.classList.add('selected');
+    }
+    updateTotal();
+  }
+
+  for(var i = 0; i < cards.length; i++){
+    cards[i].addEventListener('click', function(){
+      toggleCard(this);
+    });
+  }
+
+  var orderModal = document.getElementById('orderModal');
+
+  document.getElementById('orderBtn').addEventListener('click', function(){
+    var total = 0;
+    var html = '';
+    for(var i = 0; i < selected.length; i++){
+      total += selected[i].price;
+      html += '<div class="order-item"><span>' + selected[i].name + '</span><span>' + fmt(selected[i].price) + '</span></div>';
+    }
+    document.getElementById('orderList').innerHTML = html;
+    document.getElementById('modalTotal').textContent = fmt(total);
+    orderModal.classList.add('open');
+  });
+
+  document.getElementById('cancelOrderBtn').addEventListener('click', function(){
+    orderModal.classList.remove('open');
+  });
+
+  orderModal.addEventListener('click', function(e){
+    if(e.target === orderModal) orderModal.classList.remove('open');
+  });
+
+  document.getElementById('sendOrderBtn').addEventListener('click', function(){
+    var btn = this;
+    var name = document.getElementById('clientName').value.trim();
+    var phone = document.getElementById('clientPhone').value.trim();
+    var comment = document.getElementById('clientComment').value.trim();
+
+    if(!name){ showToast('Введите имя', 'error'); return; }
+    if(!phone){ showToast('Введите телефон', 'error'); return; }
+    if(phone.replace(/\D/g,'').length < 10){ showToast('Телефон короткий', 'error'); return; }
+
+    var total = 0;
+    var text = '🚗 НОВАЯ ЗАЯВКА — LUMEN CAR\n\n';
+    text += '👤 Имя: ' + name + '\n';
+    text += '📞 Телефон: ' + phone + '\n';
+    if(comment) text += '💬 Комментарий: ' + comment + '\n';
+    text += '\n📋 Услуги:\n';
+    for(var i = 0; i < selected.length; i++){
+      total += selected[i].price;
+      text += '• ' + selected[i].name + ' — ' + fmt(selected[i].price) + '\n';
+    }
+    text += '\n💰 Итого: ' + fmt(total);
+    text += '\n\n🕐 ' + new Date().toLocaleString('ru-RU');
+
+    btn.disabled = true;
+    btn.textContent = 'Отправка…';
+
+    var url = 'https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage';
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: text
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      btn.disabled = false;
+      btn.textContent = 'Отправить';
+      if(data.ok){
+        showToast('Заявка отправлена!', 'success');
+        orderModal.classList.remove('open');
+        selected = [];
+        var all = document.querySelectorAll('.card');
+        for(var j = 0; j < all.length; j++) all[j].classList.remove('selected');
+        updateTotal();
+        document.getElementById('clientName').value = '';
+        document.getElementById('clientPhone').value = '';
+        document.getElementById('clientComment').value = '';
+      } else {
+        showToast('Ошибка: ' + (data.description || 'не отправлено'), 'error');
+      }
+    })
+    .catch(function(err){
+      console.error(err);
+      btn.disabled = false;
+      btn.textContent = 'Отправить';
+      showToast('Ошибка сети', 'error');
+    });
+  });
+
+  var STORAGE_KEY = 'lumen_reviews_v1';
+  var reviewsList = document.getElementById('reviewsList');
+  var reviewModal = document.getElementById('reviewModal');
+  var currentRating = 5;
+
+  function loadReviews(){
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch(e){ return []; }
+  }
+
+  function saveReviews(list){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch(e){}
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function renderReviews(){
+    var list = loadReviews();
+    if(!list.length){
+      reviewsList.innerHTML = '<div class="reviews-empty">Пока отзывов нет. Будьте первым!</div>';
+      return;
+    }
+    var html = '';
+    for(var i = 0; i < list.length; i++){
+      var r = list[i];
+      var initial = (r.name || '?').charAt(0).toUpperCase();
+      var starStr = '';
+      for(var k = 0; k < r.rating; k++) starStr += '★';
+      for(var k = r.rating; k < 5; k++) starStr += '☆';
+      var dateStr = '';
+      try { dateStr = new Date(r.date).toLocaleDateString('ru-RU', {day:'numeric', month:'short'}); } catch(e){}
+      html += '<div class="review-card">';
+      html += '<button class="review-delete" data-id="' + r.id + '">✕</button>';
+      html += '<div class="review-stars">' + starStr + '</div>';
+      html += '<div class="review-text">' + esc(r.text) + '</div>';
+      html += '<div class="review-author"><div class="review-avatar">' + esc(initial) + '</div>';
+      html += '<div><div class="review-name">' + esc(r.name) + '</div>';
+      if(r.car) html += '<div class="review-car">' + esc(r.car) + '</div>';
+      html += '</div><div class="review-date">' + dateStr + '</div></div></div>';
+    }
+    reviewsList.innerHTML = html;
+
+    var btns = reviewsList.querySelectorAll('.review-delete');
+    for(var j = 0; j < btns.length; j++){
+      btns[j].addEventListener('click', function(e){
+        e.stopPropagation();
+        var id = this.getAttribute('data-id');
+        if(confirm('Удалить этот отзыв?')){
+          var list = loadReviews().filter(function(r){ return r.id !== id; });
+          saveReviews(list);
+          renderReviews();
+        }
+      });
+    }
+  }
+
+  var starBtns = document.querySelectorAll('.star-btn');
+  for(var i = 0; i < starBtns.length; i++) starBtns[i].classList.add('active');
+  for(var i = 0; i < starBtns.length; i++){
+    starBtns[i].addEventListener('click', function(){
+      currentRating = parseInt(this.getAttribute('data-star'), 10);
+      for(var k = 0; k < starBtns.length; k++){
+        var val = parseInt(starBtns[k].getAttribute('data-star'), 10);
+        if(val <= currentRating) starBtns[k].classList.add('active');
+        else starBtns[k].classList.remove('active');
+      }
+    });
+  }
+
+  document.getElementById('addReviewBtn').addEventListener('click', function(){
+    reviewModal.classList.add('open');
+  });
+
+  document.getElementById('cancelReviewBtn').addEventListener('click', function(){
+    reviewModal.classList.remove('open');
+  });
+
+  reviewModal.addEventListener('click', function(e){
+    if(e.target === reviewModal) reviewModal.classList.remove('open');
+  });
+
+  document.getElementById('submitReviewBtn').addEventListener('click', function(){
+    var name = document.getElementById('reviewName').value.trim();
+    var car = document.getElementById('reviewCar').value.trim();
+    var text = document.getElementById('reviewText').value.trim();
+
+    if(!name){ showToast('Введите имя', 'error'); return; }
+    if(!text || text.length < 10){ showToast('Отзыв короткий', 'error'); return; }
+
+    var list = loadReviews();
+    list.unshift({
+      id: 'r_' + Date.now(),
+      name: name,
+      car: car,
+      text: text,
+      rating: currentRating,
+      date: new Date().toISOString()
+    });
+    saveReviews(list);
+
+    document.getElementById('reviewName').value = '';
+    document.getElementById('reviewCar').value = '';
+    document.getElementById('reviewText').value = '';
+    currentRating = 5;
+    for(var k = 0; k < starBtns.length; k++) starBtns[k].classList.add('active');
+
+    reviewModal.classList.remove('open');
+    renderReviews();
+    showToast('Отзыв добавлен', 'success');
+  });
+
+  function showToast(msg, type){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (type ? ' ' + type : '');
+    setTimeout(function(){ t.className = 'toast'; }, 2500);
+  }
+
+  renderReviews();
+  updateTotal();
+});
+</script>
+</body>
+</html>
